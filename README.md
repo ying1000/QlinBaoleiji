@@ -1,5 +1,7 @@
 麒麟堡垒机支持通用堡垒机功能（含应用发布功能）、SSL VPN功能、动态口令功能（手机APP方式不需要联网）、CA认证功能，RDP可支持TLS，系统升级、响应迅速，开源版本支持telnet、ssh、rdp、ftp协议，不需要生成许可可以直接下载安装使用。
+
 麒麟堡垒机前台为PHP语言，后台为C语言，目前已经开发了前台、telnet、ftp、ssh、自动密码修改的代码。
+
 官网地址http://www.tosec.com.cn    QQ 5群：516043560,   支持人员QQ:14769579,可以得到官方支持。
 
 麒麟堡，垒机安装分为ISO安装、安装包、镜像安装三种方式：
@@ -12,6 +14,7 @@ ISO安装方式适合硬件物理机、可以挂CDROM的虚机等方式，安装
 
 官网下载地址：
 http://get.tosec.com.cn/open.iso
+
 百度网盘地址:
 http://pan.baidu.com/s/1mhSAmUG
 
@@ -26,6 +29,7 @@ http://pan.baidu.com/s/1mhSAmUG
 官网下载地址:
 http://get.tosec.com.cn/centos7.tar.gz
 百度云下载地址：
+
 http://pan.baidu.com/s/1miKcWmG
 
 系统安装: 安装MINI Centos7.x 或使用云模版最小化Centos 7.X
