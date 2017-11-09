@@ -8,14 +8,13 @@ use File::Basename;
 use Crypt::CBC;
 use MIME::Base64;
 
-#lftp -c 'mirror -n  sftp://root:freesvr123@172.16.210.249:2288/opt/freesvr/audit/gateway/log/ssh/replay/2013-10-27 /tmp/xlwu/tmp/as/gd/2013-10-27'
 
 # backup_session_log 表中 status 含义
 # 0 正确
 # 1 rsync连接出错
 # 2 指定文件不存在
 
-our $sessions_intrerval = 30;
+our $sessions_intrerval = 35;
 our $backup_ip = "";
 
 our $time_now_utc = time;
