@@ -69,7 +69,7 @@ sub get_local_mysql_config
 {
     my $tmp_mysql_user = "root";
     my $tmp_mysql_passwd = "";
-    open(my $fd_fr, "</opt/freesvr/audit/etc/perl.cnf");
+    open(my $fd_fr,  "</opt/freesvr/audit/etc/perl.cnf");
     while(my $line = <$fd_fr>)
     {
         $line =~ s/\s//g;
