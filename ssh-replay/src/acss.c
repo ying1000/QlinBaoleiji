@@ -244,6 +244,7 @@ acss_seed(ACSS_KEY *key)
 }
 
 void
+
 acss_setkey(ACSS_KEY *key, const unsigned char *data, int enc, int mode)
 {
 	memcpy(key->data, data, sizeof(key->data));
@@ -264,4 +265,5 @@ acss_setsubkey(ACSS_KEY *key, const unsigned char *subkey)
 	key->subkey_avilable = 1;
 	acss_seed(key);
 }
+
 #endif

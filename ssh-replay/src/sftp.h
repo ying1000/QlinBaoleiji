@@ -31,6 +31,7 @@
 /* version */
 #define	SSH2_FILEXFER_VERSION		3
 
+
 /* client to server */
 #define SSH2_FXP_INIT			1
 #define SSH2_FXP_OPEN			3
