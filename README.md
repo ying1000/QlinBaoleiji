@@ -59,6 +59,9 @@ https://market.aliyun.com/products/56848019/cmjj021886.html?spm=5176.730005.0.0.
 华为云镜像地址：
 https://app.huaweicloud.com/product/00301-47088-0--0
 
+腾讯云镜像地址：
+需要提供ID找厂商共享
+
 
 1.4 产品使用：
 
