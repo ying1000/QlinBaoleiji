@@ -42,6 +42,7 @@ void base64_encoder( const char *input, size_t len, char** out_str )
         case 1:
             tmp_out[p++] = cb64[(( input[i] >> 2 ) & 0x3f )];
             tmp_out[p++] = cb64[(( input[i] << 4 ) & 0x30 )];
+            tmp_out[p++] = cb64[( input[i + 2] & 0x3f )];
             tmp_out[p++] = '=';
             tmp_out[p++] = '=';
             break;
