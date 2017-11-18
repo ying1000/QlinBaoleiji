@@ -24,7 +24,7 @@ while(my ($key,$value) = each %month)
     print "k = $key, v = $value\n";
 }
 
-our $global_cfg="/opt/freesvr/audit/etc/global.cfg";
+our $global_cfg="/etc/global.cfg";
 our ($mysql_server,$mysql_port,$mysql_user,$mysql_pass,$mysql_db,$hostname);
 
 our $FILE;
@@ -118,5 +118,4 @@ while(my $line=<$fd>)
     }
 }
 
-`cat /var/log/vpn.log >> /var/log/vpns.log`;
 `echo "" > /var/log/vpn.log`;
