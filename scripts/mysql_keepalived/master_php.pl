@@ -77,7 +77,9 @@ system("ssh -p 2288 $user\@$peer_ip '$slave_cmd'");
 
 sub send_file 
 {
-    my($cmd) =  @_;
+    my($sub_cmd) =  @_;
+    my $cmd = "lftp -c '$sub_cmd'; echo \"lftp status:\$?\"";
+    print $cmd,"\n";
     my $flag = 1;
     foreach my $line(split /\n/,`$cmd`)
     {   
@@ -95,25 +97,28 @@ sub private_key_process
     system("ssh-keygen -t rsa -P \"\" -f ~/.ssh/id_rsa");
     system("mv /root/.ssh/id_rsa.pub /root/.ssh/authorized_keys");
 
-    my $cmd = "lftp -c 'put $user_home_dir/.ssh/authorized_keys -o sftp://$user:$passwd\@$peer_ip:2288$user_home_dir/.ssh/authorized_keys'; echo \"lftp status:\$?\"";
-    print $cmd,"\n";
-    if(&send_file($cmd) != 0)
+    my $sub_cmd = "put $user_home_dir/.ssh/authorized_keys -o sftp://$user:$passwd\@$peer_ip:2288$user_home_dir/.ssh/authorized_keys";
+    $sub_cmd =~ s/'/'\\''/g;
+    $sub_cmd =~ s/"/"\\""/g;
+    if(&send_file($sub_cmd) != 0)
     {
         print "send authorized_keys failed\n";
         return 1;
     }
 
-    $cmd = "lftp -c 'put $user_home_dir/.ssh/id_rsa -o sftp://$user:$passwd\@$peer_ip:2288$user_home_dir/.ssh/id_rsa'; echo \"lftp status:\$?\"";
-    print $cmd,"\n";
-    if(&send_file($cmd) != 0)
+    $sub_cmd = "put $user_home_dir/.ssh/id_rsa -o sftp://$user:$passwd\@$peer_ip:2288$user_home_dir/.ssh/id_rsa";
+    $sub_cmd =~ s/'/'\\''/g;
+    $sub_cmd =~ s/"/"\\""/g;
+    if(&send_file($sub_cmd) != 0)
     {
         print "send id_rsa failed\n";
         return 1;
     }
 
-    $cmd = "lftp -c 'chmod 0600 sftp://$user\@$peer_ip:2288$user_home_dir/.ssh/id_rsa'; echo \"lftp status:\$?\"";
-    print $cmd,"\n";
-    if(&send_file($cmd) != 0)
+    $sub_cmd = "chmod 0600 sftp://$user\@$peer_ip:2288$user_home_dir/.ssh/id_rsa";
+    $sub_cmd =~ s/'/'\\''/g;
+    $sub_cmd =~ s/"/"\\""/g;
+    if(&send_file($sub_cmd) != 0)
     {
         print "send id_rsa failed\n";
         return 1;
