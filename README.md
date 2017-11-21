@@ -16,7 +16,7 @@ ISO安装方式适合硬件物理机、可以挂CDROM的虚机等方式，安装
 http://get.tosec.com.cn/open.iso
 
 百度网盘地址:
-http://pan.baidu.com/s/1nuRTTl3
+https://pan.baidu.com/s/1mhSAmUG
 
 安装条件：系统必须至少有一块网卡，系统硬件为：Intel 64位CPU、2G内存（建议4G）、硬盘80G以上。
 
@@ -30,7 +30,7 @@ http://pan.baidu.com/s/1nuRTTl3
 http://get.tosec.com.cn/centos7.tar.gz
 百度云下载地址：
 
-http://pan.baidu.com/s/1miKcWmG
+https://pan.baidu.com/s/1slqg94L
 
 系统安装: 安装MINI Centos7.x 或使用云模版最小化Centos 7.X
 安装包安装过程：
