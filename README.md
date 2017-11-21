@@ -16,7 +16,7 @@ ISO安装方式适合硬件物理机、可以挂CDROM的虚机等方式，安装
 http://get.tosec.com.cn/open.iso
 
 百度网盘地址:
-http://pan.baidu.com/s/1mhSAmUG
+http://pan.baidu.com/s/1nuRTTl3
 
 安装条件：系统必须至少有一块网卡，系统硬件为：Intel 64位CPU、2G内存（建议4G）、硬盘80G以上。
 
