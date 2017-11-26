@@ -186,7 +186,7 @@ allserver[i++]={hostname:'{{$allserver[as].hostname}}',device_ip:'{{$allserver[a
     <li class="me_b"><img src="{{$template_root}}/images/an11.jpg" align="absmiddle"/><a href="admin.php?controller=admin_member&action=online">在线用户</a><img src="{{$template_root}}/images/an33.jpg" align="absmiddle"/></li>
 	{{/if}}
 	{{/if}}
-</ul><span class="back_img"><A href="admin.php?controller={{if $fromapp eq 'search'}}admin_pro&action=app_priority_search{{else}}admin_config&action=apppub_list{{if $smarty.get.device_ip eq ''}}&ip={{$appserverip}}{{/if}}&device_ip={{$smarty.get.device_ip}}{{/if}}&back=1"><IMG src="{{$template_root}}/images/back1.png" 
+</ul><span class="back_img"><A href="admin.php?controller={{if $smarty.get.from eq 'passview'}}admin_index&action=apppassword{{else}}{{if $fromapp eq 'search'}}admin_pro&action=app_priority_search{{else}}admin_config&action=apppub_list{{if $smarty.get.device_ip eq ''}}&ip={{$appserverip}}{{/if}}&device_ip={{$smarty.get.device_ip}}{{/if}}{{/if}}&back=1"><IMG src="{{$template_root}}/images/back1.png" 
       width="80" height="30" border="0"></A></span>
 </div></td></tr>
   <tr>
@@ -194,7 +194,7 @@ allserver[i++]={hostname:'{{$allserver[as].hostname}}',device_ip:'{{$allserver[a
 	
           <tr>
             <td align="center">
-    <form name="f1" method=post action="admin.php?controller=admin_config&action=apppub_save&id={{$apppubid}}&appserverip={{$appserverip}}&device_ip={{$smarty.get.device_ip}}">
+    <form name="f1" method=post action="admin.php?controller=admin_config&action=apppub_save&id={{$apppubid}}&appserverip={{$appserverip}}&device_ip={{$smarty.get.device_ip}}&from={{$smarty.get.from}}">
 <input type="password" name="hiddenpassword" id="hiddenpassword" style="display:none"/>	<table border=0 width=100% cellpadding=5 cellspacing=0 bgcolor="#FFFFFF" valign=top class="BBtable">
 	<tr><th colspan="3" class="list_bg"></th></tr>
 	<TR>

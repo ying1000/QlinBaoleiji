@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2017-07-10 11:22:02
+<?php /* Smarty version 3.1.27, created on 2017-10-26 14:14:28
          compiled from "/opt/freesvr/web/htdocs/freesvr/audit/template/admin/sshkey_edit.tpl" */ ?>
 <?php
-/*%%SmartyHeaderCode:11961909485962f2da227d22_41077674%%*/
+/*%%SmartyHeaderCode:214244443259f17d44b5ba46_42118584%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,11 +9,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '2cef1c6e89ebf1523d40a7f8d64400ce037ac61f' => 
     array (
       0 => '/opt/freesvr/web/htdocs/freesvr/audit/template/admin/sshkey_edit.tpl',
-      1 => 1477107487,
+      1 => 1508689072,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '11961909485962f2da227d22_41077674',
+  'nocache_hash' => '214244443259f17d44b5ba46_42118584',
   'variables' => 
   array (
     'title' => 0,
@@ -24,13 +24,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_5962f2da2cfc43_88959501',
+  'unifunc' => 'content_59f17d44bf6af7_69343620',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_5962f2da2cfc43_88959501')) {
-function content_5962f2da2cfc43_88959501 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_59f17d44bf6af7_69343620')) {
+function content_59f17d44bf6af7_69343620 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '11961909485962f2da227d22_41077674';
+$_smarty_tpl->properties['nocache_hash'] = '214244443259f17d44b5ba46_42118584';
 ?>
 <!doctype html public "-//w3c//dtd html 4.0 transitional//en">
 <html>
@@ -64,7 +64,10 @@ a:hover {
 <ul>
 <?php if ($_SESSION['ADMIN_LEVEL'] == 10) {?>
 <li class="me_b"><img src="<?php echo $_smarty_tpl->tpl_vars['template_root']->value;?>
-/images/an11.jpg" align="absmiddle"/><a href="admin.php?controller=admin_index&action=main">密码查看</a><img src="<?php echo $_smarty_tpl->tpl_vars['template_root']->value;?>
+/images/an11.jpg" align="absmiddle"/><a href="admin.php?controller=admin_index&action=main">系统密码</a><img src="<?php echo $_smarty_tpl->tpl_vars['template_root']->value;?>
+/images/an33.jpg" align="absmiddle"/></li>
+<li class="me_b"><img src="<?php echo $_smarty_tpl->tpl_vars['template_root']->value;?>
+/images/an11.jpg" align="absmiddle"/><a href="admin.php?controller=admin_index&action=apppassword">应用密码</a><img src="<?php echo $_smarty_tpl->tpl_vars['template_root']->value;?>
 /images/an33.jpg" align="absmiddle"/></li>
 <li class="me_b"><img src="<?php echo $_smarty_tpl->tpl_vars['template_root']->value;?>
 /images/an11.jpg" align="absmiddle"/><a href="admin.php?controller=admin_pro&action=passwordedit">修改密码</a><img src="<?php echo $_smarty_tpl->tpl_vars['template_root']->value;?>

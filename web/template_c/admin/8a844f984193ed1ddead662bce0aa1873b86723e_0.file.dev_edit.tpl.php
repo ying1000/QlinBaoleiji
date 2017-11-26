@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2017-06-19 21:57:32
+<?php /* Smarty version 3.1.27, created on 2017-11-15 14:27:20
          compiled from "/opt/freesvr/web/htdocs/freesvr/audit/template/admin/dev_edit.tpl" */ ?>
 <?php
-/*%%SmartyHeaderCode:7586066425947d84ce56255_00521301%%*/
+/*%%SmartyHeaderCode:5079462955a0bde487b20e5_73369656%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,11 +9,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '8a844f984193ed1ddead662bce0aa1873b86723e' => 
     array (
       0 => '/opt/freesvr/web/htdocs/freesvr/audit/template/admin/dev_edit.tpl',
-      1 => 1497880646,
+      1 => 1510726958,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '7586066425947d84ce56255_00521301',
+  'nocache_hash' => '5079462955a0bde487b20e5_73369656',
   'variables' => 
   array (
     'title' => 0,
@@ -55,13 +55,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_5947d84d07c2f4_62856346',
+  'unifunc' => 'content_5a0bde4891d8a8_94141722',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_5947d84d07c2f4_62856346')) {
-function content_5947d84d07c2f4_62856346 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_5a0bde4891d8a8_94141722')) {
+function content_5a0bde4891d8a8_94141722 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '7586066425947d84ce56255_00521301';
+$_smarty_tpl->properties['nocache_hash'] = '5079462955a0bde487b20e5_73369656';
 ?>
 <!doctype html public "-//w3c//dtd html 4.0 transitional//en">
 <html>
@@ -122,9 +122,12 @@ function change_option(number,index){
 <td width="84%" align="left" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0"><tr><td valign="middle" class="hui_bj"><div class="menu">
 <ul>
 <?php if ($_SESSION['ADMIN_LEVEL'] == 10) {?>
-<li class="me_a"><img src="<?php echo $_smarty_tpl->tpl_vars['template_root']->value;?>
-/images/an1.jpg" align="absmiddle"/><a href="admin.php?controller=admin_index&action=main">密码查看</a><img src="<?php echo $_smarty_tpl->tpl_vars['template_root']->value;?>
-/images/an3.jpg" align="absmiddle"/></li>
+<li class="me_b"><img src="<?php echo $_smarty_tpl->tpl_vars['template_root']->value;?>
+/images/an11.jpg" align="absmiddle"/><a href="admin.php?controller=admin_index&action=main">系统密码</a><img src="<?php echo $_smarty_tpl->tpl_vars['template_root']->value;?>
+/images/an33.jpg" align="absmiddle"/></li>
+<li class="me_b"><img src="<?php echo $_smarty_tpl->tpl_vars['template_root']->value;?>
+/images/an11.jpg" align="absmiddle"/><a href="admin.php?controller=admin_index&action=apppassword">应用密码</a><img src="<?php echo $_smarty_tpl->tpl_vars['template_root']->value;?>
+/images/an33.jpg" align="absmiddle"/></li>
 <li class="me_b"><img src="<?php echo $_smarty_tpl->tpl_vars['template_root']->value;?>
 /images/an11.jpg" align="absmiddle"/><a href="admin.php?controller=admin_pro&action=passwordedit">修改密码</a><img src="<?php echo $_smarty_tpl->tpl_vars['template_root']->value;?>
 /images/an33.jpg" align="absmiddle"/></li>
@@ -142,8 +145,11 @@ function change_option(number,index){
 /images/an33.jpg" align="absmiddle"/></li>
 <?php } elseif ($_SESSION['ADMIN_LEVEL'] == 10 || $_SESSION['ADMIN_LEVEL'] == 101) {?>
 <li class="me_a"><img src="<?php echo $_smarty_tpl->tpl_vars['template_root']->value;?>
-/images/an1.jpg" align="absmiddle"/><a href="admin.php?controller=admin_index&action=main">密码查看</a><img src="<?php echo $_smarty_tpl->tpl_vars['template_root']->value;?>
+/images/an1.jpg" align="absmiddle"/><a href="admin.php?controller=admin_index&action=main">系统密码</a><img src="<?php echo $_smarty_tpl->tpl_vars['template_root']->value;?>
 /images/an3.jpg" align="absmiddle"/></li>
+<li class="me_b"><img src="<?php echo $_smarty_tpl->tpl_vars['template_root']->value;?>
+/images/an11.jpg" align="absmiddle"/><a href="admin.php?controller=admin_index&action=apppassword">应用密码</a><img src="<?php echo $_smarty_tpl->tpl_vars['template_root']->value;?>
+/images/an33.jpg" align="absmiddle"/></li>
 <?php } else { ?>
 	<li class="me_b"><img src="<?php echo $_smarty_tpl->tpl_vars['template_root']->value;?>
 /images/an11.jpg" align="absmiddle"/><a href="admin.php?controller=admin_member">用户管理</a><img src="<?php echo $_smarty_tpl->tpl_vars['template_root']->value;?>
@@ -294,7 +300,7 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['g']['last']       = ($_smart
 	<?php $_smarty_tpl->tpl_vars["trnumber"] = new Smarty_Variable($_smarty_tpl->tpl_vars['trnumber']->value+1, null, 0);?>
 	<tr <?php if ($_smarty_tpl->tpl_vars['trnumber']->value%2 == 0) {?>bgcolor="f7f7f7"<?php }?>>
 		<td width="15%" align=right>
-		超级管理员口令:	
+		超级用户口令(需要自动su/enable时才需要填写):	
 		</td>
 		<td width="35%">
 				<input type="password" size=35 name="superpassword" value="<?php echo $_smarty_tpl->tpl_vars['superpassword']->value;?>

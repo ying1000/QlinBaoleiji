@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2017-05-14 21:35:36
+<?php /* Smarty version 3.1.27, created on 2017-11-01 22:24:18
          compiled from "/opt/freesvr/web/htdocs/freesvr/audit/template/admin/keys_list.tpl" */ ?>
 <?php
-/*%%SmartyHeaderCode:144673398259185d28cd3ff1_42043698%%*/
+/*%%SmartyHeaderCode:13764871359f9d912a8cf34_08000845%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,11 +9,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '697565ec587e4576d9eab404e27f9c7888ed2269' => 
     array (
       0 => '/opt/freesvr/web/htdocs/freesvr/audit/template/admin/keys_list.tpl',
-      1 => 1474793221,
+      1 => 1499420335,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '144673398259185d28cd3ff1_42043698',
+  'nocache_hash' => '13764871359f9d912a8cf34_08000845',
   'variables' => 
   array (
     'title' => 0,
@@ -29,14 +29,14 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_59185d28d52945_98635771',
+  'unifunc' => 'content_59f9d912b204d9_08992234',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_59185d28d52945_98635771')) {
-function content_59185d28d52945_98635771 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_59f9d912b204d9_08992234')) {
+function content_59f9d912b204d9_08992234 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_truncate_cn')) require_once '/opt/freesvr/web/htdocs/freesvr/audit/smarty/plugins/modifier.truncate_cn.php';
 
-$_smarty_tpl->properties['nocache_hash'] = '144673398259185d28cd3ff1_42043698';
+$_smarty_tpl->properties['nocache_hash'] = '13764871359f9d912a8cf34_08000845';
 ?>
 <!doctype html public "-//w3c//dtd html 4.0 transitional//en">
 <html>
@@ -121,7 +121,7 @@ function loadurl(url){
 	$.get(url, {Action:"get",Name:"lulu","1":Math.round(new Date().getTime()/1000)}, function (data, textStatus){
 		this; // 在这里this指向的是Ajax请求的选项配置信息，请参考下图
 		//alert(data);
-		if(data.substring(0,10)=='freesvr://'){
+		if(data.substring(0,<?php if ($_SESSION['urlprotocol'] == 1) {?>11<?php } else { ?>10<?php }?>)=='<?php if ($_SESSION['urlprotocol'] == 1) {?>baoleiji<?php } else { ?>freesvr<?php }?>://'){
 			launcher(data);
 		}else if(data.substring(0,15)=='window.loadurl(' || data.substring(0,11)=='if(confirm('){
 			eval(data);

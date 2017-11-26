@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2017-08-08 09:55:51
+<?php /* Smarty version 3.1.27, created on 2017-10-22 23:49:50
          compiled from "/opt/freesvr/web/htdocs/freesvr/audit/template/admin/checkpass.tpl" */ ?>
 <?php
-/*%%SmartyHeaderCode:88994332759891a27a6ab92_01495496%%*/
+/*%%SmartyHeaderCode:121000525759ecbe1e60b173_26438581%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,11 +9,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '01ca675e63683bb92d1d0278633e64622de17bc0' => 
     array (
       0 => '/opt/freesvr/web/htdocs/freesvr/audit/template/admin/checkpass.tpl',
-      1 => 1474793222,
+      1 => 1508687336,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '88994332759891a27a6ab92_01495496',
+  'nocache_hash' => '121000525759ecbe1e60b173_26438581',
   'variables' => 
   array (
     'title' => 0,
@@ -23,13 +23,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_59891a27abee81_32916549',
+  'unifunc' => 'content_59ecbe1e666bc7_42472351',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_59891a27abee81_32916549')) {
-function content_59891a27abee81_32916549 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_59ecbe1e666bc7_42472351')) {
+function content_59ecbe1e666bc7_42472351 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '88994332759891a27a6ab92_01495496';
+$_smarty_tpl->properties['nocache_hash'] = '121000525759ecbe1e60b173_26438581';
 ?>
 <!doctype html public "-//w3c//dtd html 4.0 transitional//en">
 <html>
@@ -83,6 +83,7 @@ $_smarty_tpl->properties['nocache_hash'] = '88994332759891a27a6ab92_01495496';
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
             <td align="center"><form name="f1" method=post OnSubmit='return check()' action="admin.php?controller=admin_pro&action=dev_viewpass&id=<?php echo $_smarty_tpl->tpl_vars['id']->value;?>
+&apppub=<?php echo $_GET['apppub'];?>
 ">
 	<table border=0 width=100% cellpadding=5 cellspacing=1 bgcolor="#FFFFFF" valign=top>
 	<tr bgcolor="f7f7f7">

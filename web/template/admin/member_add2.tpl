@@ -273,8 +273,8 @@ onBlur=pwStrength(this.value) > {{$pwdshould}} <input onClick="setrandompwd();" 
 			{{/section}}
                   </SELECT>  
                   
-&nbsp;&nbsp;&nbsp;动态口令卡：含有字符<input type="text" class="wbk" size="10" id="filtertext" {{if !$otpenable}}disabled{{/if}} onChange="filter();" />
-                  <select  class="wbk"  name=usbkey id="usbkeyid"  {{if !$otpenable}}disabled{{/if}}>
+&nbsp;&nbsp;&nbsp;动态口令卡：含有字符<input type="text" class="wbk" size="10" id="filtertext"  onChange="filter();" />
+                  <select  class="wbk"  name=usbkey id="usbkeyid" >
                       <OPTION value="">{{$language.nobind}}</OPTION>
                      	{{section name=k loop=$allusbkey}}
 							<option value="{{$allusbkey[k].keyid}}" {{if $allusbkey[k].keyid == $member.usbkey}}selected{{/if}} {{if $allusbkey[k].bind}}style="color:red"{{/if}}>{{$allusbkey[k].keyid}}</option>
@@ -548,8 +548,8 @@ cal2.manageFields("f_rangeEnd_trigger", "limit_time", "%Y-%m-%d %H:%M:%S");
 						VPN IP<input type="text" name="vpnip" value="{{$member.vpnip}}" />
       </TD>
       <TD align="right">动态口令卡： </TD>
-      <TD align="left" >含有字符<input type="text" class="wbk" size="10" id="filtertext" {{if !$otpenable}}disabled{{/if}} onChange="filter();" />
-                  <select  class="wbk"  name=usbkey id="usbkeyid"  {{if !$otpenable}}disabled{{/if}}>
+      <TD align="left" >含有字符<input type="text" class="wbk" size="10" id="filtertext" onChange="filter();" />
+                  <select  class="wbk"  name=usbkey id="usbkeyid" >
                       <OPTION value="">{{$language.nobind}}</OPTION>
                      	{{section name=k loop=$allusbkey}}
 							<option value="{{$allusbkey[k].keyid}}" {{if $allusbkey[k].keyid == $member.usbkey}}selected{{/if}} {{if $allusbkey[k].bind}}style="color:red"{{/if}}>{{$allusbkey[k].keyid}}</option>

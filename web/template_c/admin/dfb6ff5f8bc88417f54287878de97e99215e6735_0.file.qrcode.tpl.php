@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2017-07-15 03:11:16
+<?php /* Smarty version 3.1.27, created on 2017-11-17 13:41:18
          compiled from "/opt/freesvr/web/htdocs/freesvr/audit/template/admin/qrcode.tpl" */ ?>
 <?php
-/*%%SmartyHeaderCode:36560662059691754531136_46169012%%*/
+/*%%SmartyHeaderCode:6639459845a0e767e9c5301_73501425%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,11 +9,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'dfb6ff5f8bc88417f54287878de97e99215e6735' => 
     array (
       0 => '/opt/freesvr/web/htdocs/freesvr/audit/template/admin/qrcode.tpl',
-      1 => 1500059473,
+      1 => 1510748119,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '36560662059691754531136_46169012',
+  'nocache_hash' => '6639459845a0e767e9c5301_73501425',
   'variables' => 
   array (
     'template_root' => 0,
@@ -24,13 +24,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_596917545c7205_09734264',
+  'unifunc' => 'content_5a0e767ea67765_85282470',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_596917545c7205_09734264')) {
-function content_596917545c7205_09734264 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_5a0e767ea67765_85282470')) {
+function content_5a0e767ea67765_85282470 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '36560662059691754531136_46169012';
+$_smarty_tpl->properties['nocache_hash'] = '6639459845a0e767e9c5301_73501425';
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <HTML><HEAD>
@@ -86,15 +86,15 @@ td{
 cellpadding="0">
                     <TBODY>
 <TR>
-                      <TD colspan="2" width="100%" align="right"><a href="admin.php?controller=admin_index&action=logout">退出</a></td></TR>
+                      <TD colspan="2" width="100%" align="right"></td></TR>
 					    
                     <TR>
-                      <TD colspan="2" height="45" align="center" align="center">用户名：<?php echo $_smarty_tpl->tpl_vars['userinfo']->value['username'];?>
-</TD></TR>
+                      <TD colspan="2" height="45" align="center" align="center">用户名：<?php echo $_smarty_tpl->tpl_vars['userinfo']->value['username'];
+if ($_smarty_tpl->tpl_vars['userinfo']->value['usbkey'] && $_smarty_tpl->tpl_vars['userinfo']->value['usbkeystatus'] == 11) {?>&nbsp;&nbsp;(radkey:<?php echo $_smarty_tpl->tpl_vars['userinfo']->value['usbkey'];?>
+)<?php }?></TD></TR>
 					    <?php if ($_smarty_tpl->tpl_vars['userinfo']->value['usbkey'] && $_smarty_tpl->tpl_vars['userinfo']->value['usbkeystatus'] == 11) {?>
                       <TR>
-                        <TD height=45 align=center colspan=2>&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $_smarty_tpl->tpl_vars['userinfo']->value['usbkey'];?>
-<img src="include/phpqrcode/qrcodeimage.php?data=<?php echo $_smarty_tpl->tpl_vars['userinfo']->value['usbkey'];?>
+                        <TD height=45 align=center colspan=2><img src="include/phpqrcode/qrcodeimage.php?data=<?php echo $_smarty_tpl->tpl_vars['userinfo']->value['usbkey'];?>
 &level=H&size=7" ></TD></TR>
                       <TR>
                         <TD height=45 align=center colspan=2>输入动态密码：<input type=text name="qrcode" id="qrcode" style="WIDTH: 200px; height:30px; line-height:30px;"  value="" ></TD>
@@ -212,11 +212,12 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['a']['last']       = ($_smart
 </TBODY>
 <style type="text/css">
 .test ul{list-style:none;}
-.test li{float:left;width:120px;margin-left:10px;line-height:30px;}
+.test li{float:left;width:80px;margin-left:-10px;line-height:30px;}
 </style>
 </TABLE></TD></TR></TBODY></TABLE></TD></TR>
         <TR>
-          <TD height="95" align="center"><div class="test"><ul><?php if ($_smarty_tpl->tpl_vars['userinfo']->value['usbkey'] && $_smarty_tpl->tpl_vars['userinfo']->value['usbkeystatus'] == 11) {?><li><a id="ios" href='#' onclick="openjpg('ios');return false;" >IOS扫描下载</a><br /><img src="logo/ios.jpg" width="50" height="50"></li><li><a id="android" href='#' onclick="openjpg('android');return false;" >安卓扫描下载</a><br /><img src="logo/android.jpg" width="50" height="50"></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php }?><li><INPUT name="button" <?php if ($_smarty_tpl->tpl_vars['userinfo']->value['usbkey'] && $_smarty_tpl->tpl_vars['userinfo']->value['usbkeystatus'] == 11) {?>onclick="return confirm('用户令牌将被新生成的手机令牌替换,确定操作吗？')"<?php }?> class="phonebtn1" id="button" onMouseOut="this.className='phonebtn1'" onMouseMove="this.className='phonebtn1cur'" type="submit" value="提 交"></li></ul></div></TD></TR></TBODY></TABLE></TD></TR></TBODY></FORM></TABLE>
+          <TD height="95" align="center"><div class="test"><ul><?php if ($_smarty_tpl->tpl_vars['userinfo']->value['usbkey'] && $_smarty_tpl->tpl_vars['userinfo']->value['usbkeystatus'] == 11) {?><li><a id="ios" href='#' onclick="openjpg('ios');return false;" >IOS扫描下载</a><br /><img src="logo/ios.jpg" width="50" height="50"></li><li><a id="android" href='#' onclick="openjpg('android');return false;" >安卓扫描下载</a><br /><img src="logo/android.jpg" width="50" height="50"></li><li><a id="android" href='#' onclick="return false;" >Windows</a><br /><a href="admin.php?controller=admin_index&action=getkey" target="hide" >软件下载</a><br /><a href="admin.php?controller=admin_index&action=getkey&key=<?php echo $_smarty_tpl->tpl_vars['userinfo']->value['usbkey'];?>
+" target="hide" >key下载</a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php }?><li style="width: 130px;"><INPUT name="button" <?php if ($_smarty_tpl->tpl_vars['userinfo']->value['usbkey'] && $_smarty_tpl->tpl_vars['userinfo']->value['usbkeystatus'] == 11) {?>onclick="return confirm('用户令牌将被新生成的手机令牌替换,确定操作吗？')"<?php }?> class="phonebtn1" id="button" onMouseOut="this.className='phonebtn1'" onMouseMove="this.className='phonebtn1cur'" type="submit" value="提 交"></li><li style="width: 130px;"><INPUT name="button" onclick="location='admin.php?controller=admin_index&action=logout'" class="phonebtn1" id="button" onMouseOut="this.className='phonebtn1'" onMouseMove="this.className='phonebtn1cur'" type="button" value="退 出"></li></ul></div></TD></TR></TBODY></TABLE></TD></TR></TBODY></FORM></TABLE>
 </DIV>
 <SCRIPT language="javascript">
  function checkdpwd(){

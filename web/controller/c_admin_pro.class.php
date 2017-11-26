@@ -1401,7 +1401,7 @@ class c_admin_pro extends c_base {
 		$serverfile = $_CONFIG['CONFIGFILE']['SERVERCONF'];
 		
 		$return=array();
-		if(file_exists($filename))
+		/*if(file_exists($filename))
 		{
 			$lines = file($filename);
 			for($ii=0; $ii<count($lines); $ii++)
@@ -1432,6 +1432,7 @@ class c_admin_pro extends c_base {
 			//alert_and_back('配置文件不存在');
 		}
 		$return['eth0'] = trim($network['IPADDR']['value']);
+		*/
 		unset($lines);
 		if(file_exists($serverfile))
 		{
@@ -4000,6 +4001,10 @@ class c_admin_pro extends c_base {
 			alert_and_back("两次输入的密码不对");
 			return;
 		}
+		if($publickey_auth==1&&empty($pubkey)){
+			alert_and_back("登录方式为托管公私钥，请选择公私钥");
+			return;
+		}
 
 		
 				
@@ -6480,6 +6485,10 @@ class c_admin_pro extends c_base {
 
 	function dev_viewpass() {
 		global $_CONFIG;
+		if(get_request("apppub")){
+			$this->dev_viewapppass();
+			return;
+		}
 		$id = get_request('id');
 		$username = (get_request("username", 1, 1));
 		$password = htmlspecialchars_decode(get_request("password", 1, 1));
@@ -6492,7 +6501,7 @@ class c_admin_pro extends c_base {
 				$member = $this->member_set->select_all(" username='$username'");	
 				$luser = $this->luser_set->select_all(" devicesid=$id AND memberid=".$member[0]['uid']);
 				if(empty($luser)){
-					$luser = $this->lgroup_set->select_all(" groupid=".$member[0]['groupid']." AND  groupid=$id ");
+					$luser = $this->lgroup_set->select_all(" groupid=".$member[0]['groupid']." AND  devicesid=$id ");
 				}
 				if (empty($luser)) {
 					alert_and_back('管理员密码输入错误');
@@ -6524,6 +6533,57 @@ class c_admin_pro extends c_base {
 			$this->display('dev_show.tpl');
 		}
 	}
+	function dev_viewapppass() {
+		global $_CONFIG;
+		$id = get_request('id');
+		$username = (get_request("username", 1, 1));
+		$password = htmlspecialchars_decode(get_request("password", 1, 1));
+		if($_SESSION['ADMIN_LEVEL'] == 0) {
+			$result = $this->member_set->select_all("`username` = '$username' AND `password` = '".$this->member_set->udf_encrypt($password)."' AND level = 10");
+		}
+		else {
+			$result = $this->member_set->select_all("`username` = '$username' AND `password` = '".$this->member_set->udf_encrypt($password)."'");
+			if($result[0]['level']==0) {
+				$member = $this->member_set->select_all(" username='$username'");	
+				$luser = $this->appmember_set->select_all(" appdeviceid=$id AND memberid=".$member[0]['uid']);
+				if(empty($luser)){
+					$luser = $this->appgroup_set->select_all(" groupid=".$member[0]['groupid']." AND  appdeviceid=$id ");
+				}
+				if (empty($luser)) {
+					alert_and_back('管理员密码输入错误');
+					exit(0);
+				}
+			}
+		}
+		
+		if(!$result) {
+			alert_and_back('用户名或密码错误,请重试');
+		}else if($result[0]['level']!=0&&$result[0]['level']!=1){
+			alert_and_back('权限不允许');
+		}
+		else {
+			$sql = "SELECT b.old_password,b.cur_password,devss.id devid,b.id appdeviceid, b.device_ip,b.desc,b.username,ss.hostname,c.appprogramname, c.appserverip,c.name,ap.icon,c.path,c.url FROM ".$this->appdevice_set->get_table_name()." b  LEFT JOIN ".$this->apppub_set->get_table_name()." c ON b.apppubid=c.id LEFT JOIN ".$this->appprogram_set->get_table_name()." ap ON c.appprogramname=ap.name ";
+			//if($gid){
+				$sql .= " LEFT JOIN ".$this->server_set->get_table_name()." ss ON b.device_ip=ss.device_ip ";
+			//}
+				$sql .= " LEFT JOIN ".$this->devpass_set->get_table_name()." devss ON c.appserverip=devss.device_ip and devss.login_method=26 where b.id=".$id;
+			$dev = $this->appdevice_set->base_select($sql);
+			
+			$this->assign('IP',$dev[0]['device_ip']);
+			$this->assign('hostname',$dev[0]['hostname']);
+			$this->assign('username',$dev[0]['username']);
+
+			$this->assign('oldpass',($this->member_set->udf_decrypt($dev[0]['old_password'])));
+			$this->assign('curpass',($this->member_set->udf_decrypt($dev[0]['cur_password'])));
+			$this->assign('appname',$dev[0]['name']);
+			$this->assign('appprogramname',$dev[0]['appprogramname']);
+			$this->assign('id',$id);
+			$this->assign('update_time',$dev[0]['last_update_time']);
+			$this->assign('title',language('设备详细信息'));
+			$this->display('dev_appshow.tpl');
+		}
+	}
+
 	function devpass_del() {
 		$id = get_request('id')!=0 ? array(get_request('id')) : 0;
 		$gid= get_request('gid');
@@ -7533,6 +7593,11 @@ while(1){
 
 	function dopwddownauth(){
 		global $_CONFIG;
+		$apppub = get_request("apppub");
+		if($apppub){
+			$this->dopwddownappauth();
+			return ;
+		}
 		$password = htmlspecialchars_decode(get_request('password', 1, 1));
 		$m = $this->member_set->select_all("username='admin'");
 		if($this->member_set->udf_decrypt($m[0]['password'])==$password){
@@ -7560,6 +7625,41 @@ while(1){
 			Header('Cache-Control: private, must-revalidate, max-age=0');
 			Header("Content-type: application/octet-stream"); 
 			Header("Content-Disposition: attachment; filename=DevicesPassword.csv"); 
+			echo $str;
+			/*
+			$filename = "tmp/".$_SESSION['ADMIN_UID']."_".time().".csv";
+			$this->String2File(iconv("UTF-8", "GBK", $str), $filename);
+			go_url($filename);*/
+			exit();
+		}else{
+			echo '<script language=\'javascript\'>alert("密码不正确");</script>';
+		}
+		exit;
+	}
+
+	function dopwddownappauth(){
+		global $_CONFIG;
+		$password = htmlspecialchars_decode(get_request('password', 1, 1));
+		$m = $this->member_set->select_all("username='admin'");
+		if($this->member_set->udf_decrypt($m[0]['password'])==$password){
+			$sql = "SELECT devss.id devid,b.id appdeviceid, b.device_ip,b.desc,b.username,ss.hostname,c.appprogramname, c.appserverip,c.name,ap.icon,c.path,c.url FROM ".$this->appdevice_set->get_table_name()." b  LEFT JOIN ".$this->apppub_set->get_table_name()." c ON b.apppubid=c.id LEFT JOIN ".$this->appprogram_set->get_table_name()." ap ON c.appprogramname=ap.name ";
+			//if($gid){
+				$sql .= " LEFT JOIN ".$this->server_set->get_table_name()." ss ON b.device_ip=ss.device_ip ";
+			//}
+				$sql .= " LEFT JOIN ".$this->devpass_set->get_table_name()." devss ON c.appserverip=devss.device_ip and devss.login_method=26";
+			$appmembers = $this->server_set->base_select($sql." order by device_ip");
+			
+			$str = language("设备IP").",".language("主机名").",".language("应用发布IP").",".language("应用名称").",".language("程序名称").",".language("用户名").",".language("当前密码").",".language("旧密码").",\n";
+			$id=1;
+			foreach ($appmembers AS $report){
+				$str .= $report['device_ip'].",".$report['hostname'].",".$report['appserverip'].",".$report['name'].",".$report['appprogramname'].",".($report['username']==""?'空用户':$report['username']).",".$this->member_set->udf_decrypt($report['cur_password']).",".$this->member_set->udf_decrypt($report['old_password']).",";
+				$str .= "\n";
+			}
+			
+			$str = iconv("UTF-8", "GBK", $str);
+			Header('Cache-Control: private, must-revalidate, max-age=0');
+			Header("Content-type: application/octet-stream"); 
+			Header("Content-Disposition: attachment; filename=AppDevicesPassword.csv"); 
 			echo $str;
 			/*
 			$filename = "tmp/".$_SESSION['ADMIN_UID']."_".time().".csv";

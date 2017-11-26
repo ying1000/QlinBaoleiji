@@ -4,7 +4,7 @@ if(!defined('CAN_RUN')) {
 }
 $_priority[0]=array(
 				'index'=>array(
-						'index','menu','main','createrdpfile','tool_list','upload_tool','tool_down','changerole','do_devices_cache','get_sms','get_email','tool_delete','login_tip','chpwd','chpwd_save','login_user_field','qrcode','doqrcode','documentupload','dodocumentupload','documentlist','documentdel','getdocument','notice_tip','accept','doaccept'
+						'index','menu','main','createrdpfile','tool_list','upload_tool','tool_down','changerole','do_devices_cache','get_sms','get_email','tool_delete','login_tip','chpwd','chpwd_save','login_user_field','qrcode','doqrcode','documentupload','dodocumentupload','documentlist','documentdel','getdocument','notice_tip','accept','doaccept','getkey'
 					),
 				'monitor'=>array(
 						'index','status_image','system_monitor','network_monitor','apache_monitor','apache_monitor_edit','apache_monitor_save','mysql_monitor','mysql_monitor_edit','mysql_monitor_save','tomcat_monitor','tomcat_monitor_edit','tomcat_monitor_save','nginx_monitor','nginx_monitor_edit','nginx_monitor_save','interface_image','oracle_tablespace_monitor','oracle_tablespace_monitor_edit','oracle_tablespace_monitor_save','oracle_disk_monitor','oracle_disk_monitor_edit','oracle_disk_monitor_save','oracle_diskgroup_monitor','oracle_diskgroup_monitor_edit','oracle_diskgroup_monitor_save','weixin_monitor','dns_monitor','dns_monitor_edit','dns_monitor_save'
@@ -67,7 +67,7 @@ $_priority[0]=array(
 
 $_priority[1]=array(
 				'index'=>array(
-						'index','menu','main','tool_list','upload_tool','tool_down','tool_delete','license','upload_license','create_license','changerole','do_devices_cache','get_sms','get_email','tool_delete','login_tip','changelogo','login_user_field','qrcode','doqrcode','documentupload','dodocumentupload','documentlist','documentdel','getdocument','notice_tip'
+						'index','menu','main','tool_list','upload_tool','tool_down','tool_delete','license','upload_license','create_license','changerole','do_devices_cache','get_sms','get_email','tool_delete','login_tip','changelogo','login_user_field','qrcode','doqrcode','documentupload','dodocumentupload','documentlist','documentdel','getdocument','notice_tip','apppassword','getkey'
 					),
 				'grouptree'=>array(
 						'getchild','get_devgroup'
@@ -328,7 +328,7 @@ $_priority[3]=array(
 				);
 $_priority[10]=array(
 				'index'=>array(
-						'index','menu','main','deletepassfile','dopassdown','passdown','do_devices_cache','changerole','do_devices_cache','login_tip','login_user_field','qrcode','doqrcode','notice_tip'
+						'index','menu','main','deletepassfile','dopassdown','passdown','do_devices_cache','changerole','do_devices_cache','login_tip','login_user_field','qrcode','doqrcode','notice_tip','apppassword'
 					),
 				'pro'=>array(
 						'index','showpwddownauth','dopwddownauth','dev_checkpass','passwordedit','password_cron','passwordcheck','logs_index','logs_del','dev_edit','dev_save','dev_viewpass','list_active_change','lac_save','lac_save2','logs_statistic','pass_edit','passedit_seluser','passedit_seluser_save','passedit_selgroup','passedit_selgroup_save','pass_save','devbatchloginlock','showdesc','dodesc'
@@ -344,7 +344,10 @@ $_priority[10]=array(
 					),
 				'detail'=>array(
 						'index','hostleftmenu','hostview','ping','hostbytype','cisco_interface','parameters','ciscoindex','ciscoleftmenu','ciscoview','eventlogs','appbytype','dev_login'
-					)					
+					)	,
+				'config'=>array(
+						'appserver_list','appserver_edit','appserver_save','appserver_delete','apppub_list','apppub_edit','apppub_delete','apppub_save','apppubimport','doapppubimport','apppubexport','appdevice_delete','default_policy','appprogram_list','appprogramimport','doappprogramimport','appicon_list','appicon_edit','appicon_save','appicon_delete','appprogram_edit','appprogram_save','appprogramexport','appprogram_delete','config_ssh','addldapserver','doaddldapserver','ldapusers','adusers','adusers_save','ssh_save','config_ftp','ntpset','ftp_save','sftp_save','ping_save','snmp_save','snmpcommunity_save','autodelete_save','keyedit','logintype','priority_cache_save','blankuser_save','ldap_save','certificate_save','async_save','login_times','login_save','ha','ha_save','syslog_mail_alarm','status_warning','loadbalance','loadbalance_edit','autochange_pwd','rdpinput_save','diskfull_save','threepripwd','dothreepripwd','threepripwd_twopwd','dothreepripwd_twopwd','viewthreepripwd_twopwd','doviewthreepripwd_twopwd','adusersbygroup','adimportconfig','adimportconfig_save','ldapusersbygroup','ldapimportconfig','ldapimportconfig_save','dpwdtime_save','rdprunning_save','loginauthtype_save','radiustolocal_save','rrdpauthtips_save','loginwrongtips_save','notice','notice_edit','notice_save','notice_del','asyncoutpass_save','ldapusers_save','passwordkey_save','accept_save','workflowadmin_save','rdpplayip_save','fingersecserver_save','certificatenginvonly12_save','certs','certs_edit','certs_del','certs_save','certsreset'
+					)				
 				);
 $_priority[4]=array(
 				'index'=>array(

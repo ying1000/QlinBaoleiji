@@ -48,13 +48,13 @@ td{
 cellpadding="0">
                     <TBODY>
 <TR>
-                      <TD colspan="2" width="100%" align="right"><a href="admin.php?controller=admin_index&action=logout">退出</a></td></TR>
+                      <TD colspan="2" width="100%" align="right"></td></TR>
 					    
                     <TR>
-                      <TD colspan="2" height="45" align="center" align="center">用户名：{{$userinfo.username}}</TD></TR>
+                      <TD colspan="2" height="45" align="center" align="center">用户名：{{$userinfo.username}}{{if $userinfo.usbkey and $userinfo.usbkeystatus eq 11}}&nbsp;&nbsp;(radkey:{{$userinfo.usbkey}}){{/if}}</TD></TR>
 					    {{if $userinfo.usbkey and $userinfo.usbkeystatus eq 11}}
                       <TR>
-                        <TD height=45 align=center colspan=2>&nbsp;&nbsp;&nbsp;&nbsp;{{$userinfo.usbkey}}<img src="include/phpqrcode/qrcodeimage.php?data={{$userinfo.usbkey}}&level=H&size=7" ></TD></TR>
+                        <TD height=45 align=center colspan=2><img src="include/phpqrcode/qrcodeimage.php?data={{$userinfo.usbkey}}&level=H&size=7" ></TD></TR>
                       <TR>
                         <TD height=45 align=center colspan=2>输入动态密码：<input type=text name="qrcode" id="qrcode" style="WIDTH: 200px; height:30px; line-height:30px;"  value="" ></TD>
 					  </TR>
@@ -119,11 +119,11 @@ cellpadding="0">
 </TBODY>
 <style type="text/css">
 .test ul{list-style:none;}
-.test li{float:left;width:120px;margin-left:10px;line-height:30px;}
+.test li{float:left;width:80px;margin-left:-10px;line-height:30px;}
 </style>
 </TABLE></TD></TR></TBODY></TABLE></TD></TR>
         <TR>
-          <TD height="95" align="center"><div class="test"><ul>{{if $userinfo.usbkey and $userinfo.usbkeystatus eq 11}}<li><a id="ios" href='#' onclick="openjpg('ios');return false;" >IOS扫描下载</a><br /><img src="logo/ios.jpg" width="50" height="50"></li><li><a id="android" href='#' onclick="openjpg('android');return false;" >安卓扫描下载</a><br /><img src="logo/android.jpg" width="50" height="50"></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{/if}}<li><INPUT name="button" {{if $userinfo.usbkey and $userinfo.usbkeystatus eq 11}}onclick="return confirm('用户令牌将被新生成的手机令牌替换,确定操作吗？')"{{/if}} class="phonebtn1" id="button" onMouseOut="this.className='phonebtn1'" onMouseMove="this.className='phonebtn1cur'" type="submit" value="提 交"></li></ul></div></TD></TR></TBODY></TABLE></TD></TR></TBODY></FORM></TABLE>
+          <TD height="95" align="center"><div class="test"><ul>{{if $userinfo.usbkey and $userinfo.usbkeystatus eq 11}}<li><a id="ios" href='#' onclick="openjpg('ios');return false;" >IOS扫描下载</a><br /><img src="logo/ios.jpg" width="50" height="50"></li><li><a id="android" href='#' onclick="openjpg('android');return false;" >安卓扫描下载</a><br /><img src="logo/android.jpg" width="50" height="50"></li><li><a id="android" href='#' onclick="return false;" >Windows</a><br /><a href="admin.php?controller=admin_index&action=getkey" target="hide" >软件下载</a><br /><a href="admin.php?controller=admin_index&action=getkey&key={{$userinfo.usbkey}}" target="hide" >key下载</a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{/if}}<li style="width: 130px;"><INPUT name="button" {{if $userinfo.usbkey and $userinfo.usbkeystatus eq 11}}onclick="return confirm('用户令牌将被新生成的手机令牌替换,确定操作吗？')"{{/if}} class="phonebtn1" id="button" onMouseOut="this.className='phonebtn1'" onMouseMove="this.className='phonebtn1cur'" type="submit" value="提 交"></li><li style="width: 130px;"><INPUT name="button" onclick="location='admin.php?controller=admin_index&action=logout'" class="phonebtn1" id="button" onMouseOut="this.className='phonebtn1'" onMouseMove="this.className='phonebtn1cur'" type="button" value="退 出"></li></ul></div></TD></TR></TBODY></TABLE></TD></TR></TBODY></FORM></TABLE>
 </DIV>
 <SCRIPT language="javascript">
  function checkdpwd(){

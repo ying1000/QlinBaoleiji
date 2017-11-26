@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2017-08-03 11:36:25
+<?php /* Smarty version 3.1.27, created on 2017-10-23 00:30:50
          compiled from "/opt/freesvr/web/htdocs/freesvr/audit/template/admin/appdevice_edit.tpl" */ ?>
 <?php
-/*%%SmartyHeaderCode:24028544559829a396bcb27_96248914%%*/
+/*%%SmartyHeaderCode:199374739859ecc7ba6efdd8_57324831%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,11 +9,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'f52db3116fb118138cdf86b5be40b14591914e48' => 
     array (
       0 => '/opt/freesvr/web/htdocs/freesvr/audit/template/admin/appdevice_edit.tpl',
-      1 => 1499420329,
+      1 => 1508689845,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '24028544559829a396bcb27_96248914',
+  'nocache_hash' => '199374739859ecc7ba6efdd8_57324831',
   'variables' => 
   array (
     'title' => 0,
@@ -45,13 +45,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_59829a39949501_95652775',
+  'unifunc' => 'content_59ecc7ba94e6d0_31491410',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_59829a39949501_95652775')) {
-function content_59829a39949501_95652775 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_59ecc7ba94e6d0_31491410')) {
+function content_59ecc7ba94e6d0_31491410 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '24028544559829a396bcb27_96248914';
+$_smarty_tpl->properties['nocache_hash'] = '199374739859ecc7ba6efdd8_57324831';
 ?>
 <!doctype html public "-//w3c//dtd html 4.0 transitional//en">
 <html>
@@ -486,8 +486,10 @@ allserver[i++]={hostname:'<?php echo $_smarty_tpl->tpl_vars['allserver']->value[
 /images/an33.jpg" align="absmiddle"/></li>
 	<?php }?>
 	<?php }?>
-</ul><span class="back_img"><A href="admin.php?controller=<?php if ($_smarty_tpl->tpl_vars['fromapp']->value == 'search') {?>admin_pro&action=app_priority_search<?php } else { ?>admin_config&action=apppub_list<?php if ($_GET['device_ip'] == '') {?>&ip=<?php echo $_smarty_tpl->tpl_vars['appserverip']->value;
+</ul><span class="back_img"><A href="admin.php?controller=<?php if ($_GET['from'] == 'passview') {?>admin_index&action=apppassword<?php } else {
+if ($_smarty_tpl->tpl_vars['fromapp']->value == 'search') {?>admin_pro&action=app_priority_search<?php } else { ?>admin_config&action=apppub_list<?php if ($_GET['device_ip'] == '') {?>&ip=<?php echo $_smarty_tpl->tpl_vars['appserverip']->value;
 }?>&device_ip=<?php echo $_GET['device_ip'];
+}
 }?>&back=1"><IMG src="<?php echo $_smarty_tpl->tpl_vars['template_root']->value;?>
 /images/back1.png" 
       width="80" height="30" border="0"></A></span>
@@ -500,6 +502,7 @@ allserver[i++]={hostname:'<?php echo $_smarty_tpl->tpl_vars['allserver']->value[
     <form name="f1" method=post action="admin.php?controller=admin_config&action=apppub_save&id=<?php echo $_smarty_tpl->tpl_vars['apppubid']->value;?>
 &appserverip=<?php echo $_smarty_tpl->tpl_vars['appserverip']->value;?>
 &device_ip=<?php echo $_GET['device_ip'];?>
+&from=<?php echo $_GET['from'];?>
 ">
 <input type="password" name="hiddenpassword" id="hiddenpassword" style="display:none"/>	<table border=0 width=100% cellpadding=5 cellspacing=0 bgcolor="#FFFFFF" valign=top class="BBtable">
 	<tr><th colspan="3" class="list_bg"></th></tr>

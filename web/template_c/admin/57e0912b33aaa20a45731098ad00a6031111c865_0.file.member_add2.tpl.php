@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2017-07-10 08:19:45
+<?php /* Smarty version 3.1.27, created on 2017-11-01 22:54:41
          compiled from "/opt/freesvr/web/htdocs/freesvr/audit/template/admin/member_add2.tpl" */ ?>
 <?php
-/*%%SmartyHeaderCode:6172595305962c8215a6148_77551896%%*/
+/*%%SmartyHeaderCode:114105559359f9e031060f44_16893261%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,11 +9,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '57e0912b33aaa20a45731098ad00a6031111c865' => 
     array (
       0 => '/opt/freesvr/web/htdocs/freesvr/audit/template/admin/member_add2.tpl',
-      1 => 1499420336,
+      1 => 1509548061,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '6172595305962c8215a6148_77551896',
+  'nocache_hash' => '114105559359f9e031060f44_16893261',
   'variables' => 
   array (
     'language' => 0,
@@ -28,7 +28,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'trnumber' => 0,
     'pwdshould' => 0,
     'priv' => 0,
-    'otpenable' => 0,
     'shenmapriv' => 0,
     'huaweipriv' => 0,
     'radiusssh' => 0,
@@ -50,13 +49,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_5962c8219182e6_66085426',
+  'unifunc' => 'content_59f9e03138aef2_56986570',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_5962c8219182e6_66085426')) {
-function content_5962c8219182e6_66085426 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_59f9e03138aef2_56986570')) {
+function content_59f9e03138aef2_56986570 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '6172595305962c8215a6148_77551896';
+$_smarty_tpl->properties['nocache_hash'] = '114105559359f9e031060f44_16893261';
 ?>
 <html >
 <head>
@@ -529,8 +528,8 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['k']['last']       = ($_smart
 			<?php endfor; endif; ?>
                   </SELECT>  
                   
-&nbsp;&nbsp;&nbsp;动态口令卡：含有字符<input type="text" class="wbk" size="10" id="filtertext" <?php if (!$_smarty_tpl->tpl_vars['otpenable']->value) {?>disabled<?php }?> onChange="filter();" />
-                  <select  class="wbk"  name=usbkey id="usbkeyid"  <?php if (!$_smarty_tpl->tpl_vars['otpenable']->value) {?>disabled<?php }?>>
+&nbsp;&nbsp;&nbsp;动态口令卡：含有字符<input type="text" class="wbk" size="10" id="filtertext"  onChange="filter();" />
+                  <select  class="wbk"  name=usbkey id="usbkeyid" >
                       <OPTION value=""><?php echo $_smarty_tpl->tpl_vars['language']->value['nobind'];?>
 </OPTION>
                      	<?php if (isset($_smarty_tpl->tpl_vars['smarty']->value['section']['k'])) unset($_smarty_tpl->tpl_vars['smarty']->value['section']['k']);
@@ -1051,8 +1050,8 @@ echo $_smarty_tpl->tpl_vars['language']->value['Administrator'];?>
 " />
       </TD>
       <TD align="right">动态口令卡： </TD>
-      <TD align="left" >含有字符<input type="text" class="wbk" size="10" id="filtertext" <?php if (!$_smarty_tpl->tpl_vars['otpenable']->value) {?>disabled<?php }?> onChange="filter();" />
-                  <select  class="wbk"  name=usbkey id="usbkeyid"  <?php if (!$_smarty_tpl->tpl_vars['otpenable']->value) {?>disabled<?php }?>>
+      <TD align="left" >含有字符<input type="text" class="wbk" size="10" id="filtertext" onChange="filter();" />
+                  <select  class="wbk"  name=usbkey id="usbkeyid" >
                       <OPTION value=""><?php echo $_smarty_tpl->tpl_vars['language']->value['nobind'];?>
 </OPTION>
                      	<?php if (isset($_smarty_tpl->tpl_vars['smarty']->value['section']['k'])) unset($_smarty_tpl->tpl_vars['smarty']->value['section']['k']);

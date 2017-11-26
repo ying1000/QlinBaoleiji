@@ -914,6 +914,183 @@ class c_admin_index extends c_base {
 			}
 		
 	}
+
+	function apppassword() {
+			global $_CONFIG;
+			$page_num = get_request('page');
+			$gid = get_request('gid');
+			$resgroup = get_request('resgroup', 0, 1);
+			$logintype = get_request('logintype', 0, 1);
+			$appserverip = get_request('appserverip', 0, 1);
+			$sip = get_request('sip', 0, 1);
+			$username = get_request('username', 0, 1);
+			$hostname = get_request('hostname', 0, 1);
+			$member = $this->member_set->select_by_id($_SESSION['ADMIN_UID']);
+			$this->assign('member', $member);
+			$lb = $this->loadbalance_set->select_all();
+			$localhost = $this->get_eth0_ip();
+			$localhost = $localhost['eth0'];
+			$this->assign("localip",$localhost);
+			$this->assign("lb",$lb);
+			$this->assign("logindebug",$_CONFIG['LOGIN_DEBUG']);
+			$orderby1 = get_request('orderby1', 0, 1);
+			$orderby2 = get_request('orderby2', 0, 1);
+			$all = get_request('all', 0, 1);
+			$appname = get_request('appname', 0, 1);
+			$appprogramname = get_request('appprogramname', 0, 1);
+			$where = '1=1';
+
+			if($appserverip){
+				$where .= " AND devices.device_ip='".$appserverip."'";
+			}
+			
+
+			if(empty($orderby1)){
+				$orderby1 = 'device_ip';
+			}
+			if(strcasecmp($orderby2, 'asc') != 0 ) {
+				$orderby2 = 'asc';
+			}else{
+				$orderby2 = 'desc';
+			}
+			$this->assign("orderby2", $orderby2);
+
+			$curr_url = $_SERVER['PHP_SELF'] . "?";
+			if(strstr($_SERVER['QUERY_STRING'], "&page=")) {
+				$curr_url .= substr($_SERVER['QUERY_STRING'], 0 , strpos($_SERVER['QUERY_STRING'], "&page="));
+			}
+			else {
+				$curr_url .= $_SERVER['QUERY_STRING'];
+			}
+			$this->assign('curr_url', $curr_url);
+			$this->assign("rdpdiskauth_up", $_COOKIE['rdpdiskauth_up']);
+			$this->assign("bydomain", $_COOKIE['bydomain']);
+			$this->assign("outsideip", $_COOKIE['outsideip']);
+
+			
+				
+			$alltem = $this->tem_set->select_all();
+		
+			if($logintype){
+				$found = 0;
+				foreach($alltem as $tems) {
+					if(strtolower($tems['login_method'])==strtolower($logintype=='_apppub' ? 'apppub' : $logintype)) {
+						$found = 1;
+						if(strtolower($logintype)=='rdp'){
+							$where .= " AND (devices.login_method=".$tems['id']." )";
+						}elseif(strtolower($logintype)=='ssh'){
+							$where .= " AND (devices.login_method=".$tems['id']." or devices.login_method=25)";
+						}else{
+							$where .= " AND devices.login_method=".$tems['id'];
+						}
+						
+					}
+				}
+				if(!$found){
+					$where .= " AND 0 ";
+				}
+			}
+			if($sip){
+				$where .= " AND devices.device_ip like '%$sip%'"; 
+			}
+			if($hostname){
+					$where .= " AND devices.hostname like '%$hostname%'"; 
+				
+			}
+			if($username){
+					$where .= " AND devices.username like '%$username%'"; 
+				
+			}
+			//$_SERVER['REMOTE_ADDR']='111.193.133.252';
+			$_gidinfo = $this->sgroup_set->select_by_id($gid);
+			//$where .=" AND devices.id IN(".implode(',', $alldevsid).")";
+			if($gid){
+				if($logintype!='_apppub'&&$logintype!='apppub'){
+					$_gidinfo = $this->sgroup_set->select_by_id($gid);
+					if($_CONFIG['LDAP']){
+						$where .= " AND (groupid='$gid' or groupid IN(".$_gidinfo['child']."))";
+					}else{
+						$where .= " AND servers.groupid='$gid'";
+					}
+				}else{
+					$where .= " AND (groupid='$gid' or groupid IN(".$_gidinfo['child']."))";
+				}
+			}
+			
+			if($resgroup){
+				$where .= ' AND devices.id IN(SELECT devicesid FROM resourcegroup WHERE devicesid!=0 AND groupname="'.$resgroup.'" )';
+			}
+			$total = $this->server_set->base_select("SELECT count(0) ct FROM `devices` LEFT JOIN servers ON devices.device_ip=servers.device_ip AND devices.hostname=servers.hostname WHERE $where $groupby ");
+			$total = $total[0]['ct'];
+			$newpager = new my_pager($total, $page_num, 20, 'page');
+			$alldev = $this->server_set->base_select("SELECT devices.*,servers.status,servers.monitor FROM `devices` LEFT JOIN servers ON devices.device_ip=servers.device_ip AND devices.hostname=servers.hostname WHERE $where $groupby ORDER BY devices.$orderby1 $orderby2  LIMIT $newpager->intStartPosition, $newpager->intItemsPerPage");
+			
+			$sqlunion = "";
+				
+			$sql = "SELECT devss.id devid,b.id appdeviceid, b.device_ip,b.desc,b.username,ss.hostname,c.appprogramname, c.appserverip,c.name,ap.icon,c.path,c.url FROM ".$this->appdevice_set->get_table_name()." b  LEFT JOIN ".$this->apppub_set->get_table_name()." c ON b.apppubid=c.id LEFT JOIN ".$this->appprogram_set->get_table_name()." ap ON c.appprogramname=ap.name ";
+			//if($gid){
+				$sql .= " LEFT JOIN ".$this->server_set->get_table_name()." ss ON b.device_ip=ss.device_ip ";
+			//}
+				$sql .= " LEFT JOIN ".$this->devpass_set->get_table_name()." devss ON c.appserverip=devss.device_ip and devss.login_method=26";
+			//$sql .= " AND c.appserverip='".$alldev[$i]['device_ip']."'";
+				
+			if($appserverip){
+				$sql .= " AND c.appserverip='".$appserverip."'";
+			}
+			if($sip){
+				$sql .= " AND b.device_ip like '%".$sip."%'";
+			}
+			if($gid){
+				$_gidinfo = $this->sgroup_set->select_by_id($gid);
+				if($_CONFIG['LDAP']){
+					$sql .= "  AND (ss.groupid='".intval($gid)."' or groupid IN(".$_gidinfo['child']."))";
+				}else{
+					$sql .= "  AND ss.groupid='".intval($gid)."'";
+				}
+					
+			}
+			if($appname){
+				$sql .= "  AND c.name like '%".$appname."%'";
+			}
+			if($appprogramname){
+				$sql .= "  AND c.appprogramname like '%".$appprogramname."%'";
+			}
+			
+			if($hostname){
+				$sql .= "  AND ss.hostname like '%".$hostname."%'";
+			}
+			
+			$total = $this->server_set->base_select("SELECT count(0) ct FROM ($sql)t ");
+			$total = $total[0]['ct'];
+			$newpager = new my_pager($total, $page_num, 20, 'page');
+			$appmembers = $this->server_set->base_select($sql." order by device_ip LIMIT $newpager->intStartPosition, $newpager->intItemsPerPage");
+			
+			$curr_url = $_SERVER['PHP_SELF'] . "?";
+			if(strstr($_SERVER['QUERY_STRING'], "&page=")) {
+				$curr_url .= substr($_SERVER['QUERY_STRING'], 0 , strpos($_SERVER['QUERY_STRING'], "&page="));
+			}
+			else {
+				$curr_url .= $_SERVER['QUERY_STRING'];
+			}
+			$this->assign('curr_url', $curr_url);
+			//echo '<pre>';print_r($alldev);echo '</pre>';
+			$this->assign("webusername", $_SESSION['ADMIN_USERNAME']);
+			$this->assign('sip', $sip);
+			$this->assign('hostname', $hostname);
+			$this->assign('gid', $gid);
+			$this->assign('title', language('服务器列表'));
+			$this->assign('alldev', $alldev);
+			$this->assign('logintype', $logintype);
+			$this->assign('page_list', $newpager->showSerialList());
+			$this->assign('total', $total);
+			$this->assign('curr_page', $newpager->intCurrentPageNumber);
+			$this->assign('total_page', $newpager->intTotalPageCount);
+			$this->assign('items_per_page', $newpager->intItemsPerPage);
+			$this->assign('appserverip', $appserverip);
+			$this->assign('appservers', $this->appserver_set->select_all("1", "appserverip", "asc"));
+			$this->assign('appmember', $appmembers);
+			$this->display("apppassword.tpl");
+	}
 	
 	function cache_countsgroups($gid, $pcount){
 		$count = 0;
@@ -1329,6 +1506,10 @@ $_SESSION['CHKSMSLOGIN_STEP']=null;
 				alert_and_back('用户名输入不正确','admin.php?controller=admin_index&action=login');
 				exit();
 			}
+		}
+		if(empty($password)){
+			alert_and_back('请输入密码','admin.php?controller=admin_index&action=login');
+			exit();
 		}
 		
 		
@@ -4389,6 +4570,23 @@ exit;
 			exit;
 		}
 		alert_and_back('操作成功','admin.php?controller=admin_index&action=documentlist');
+	}
+
+	function getkey(){
+		$key = get_request('key', 0, 1);
+		if(empty($key)){
+			Header('Cache-Control: private, must-revalidate, max-age=0');
+			Header("Content-type: application/octet-stream"); 
+			header("Content-Disposition: attachment;filename=".iconv("UTF-8", "GB2312", '动态口令程序.rar'));
+			echo file_get_contents('/opt/freesvr/audit/softdown/动态口令程序.rar');
+			exit();
+		}
+		$keyinfo = $this->radkey_set->select_all('keyid="'.$key.'"');
+		Header('Cache-Control: private, must-revalidate, max-age=0');
+		Header("Content-type: application/octet-stream"); 
+		header("Content-Disposition: attachment;filename=".iconv("UTF-8", "GB2312", 'key.txt'));
+		echo substr($keyinfo[0]['pc_index'],0,strlen($keyinfo[0]['pc_index'])-4);
+		exit();
 	}
 
 	function documentdel(){

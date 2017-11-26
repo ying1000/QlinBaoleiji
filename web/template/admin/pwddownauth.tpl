@@ -9,7 +9,7 @@
         <TBODY>
         <TR>
           <TD align="center">
-           <form name="f1" method=post enctype="multipart/form-data" action="admin.php?controller=admin_pro&action=dopwddownauth" target="hide">
+           <form name="f1" method=post enctype="multipart/form-data" action="admin.php?controller=admin_pro&action=dopwddownauth&apppub={{$smarty.get.apppub}}" target="hide">
             <TABLE width="100%" bgcolor="#ffffff" border="0" cellspacing="1" 
             cellpadding="5" valign="middle" style="margin-top:50px;">
               <TBODY> 

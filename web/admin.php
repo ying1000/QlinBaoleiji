@@ -255,7 +255,7 @@ if($_SESSION['ADMIN_UID']){
 	}
 	ob_end_clean();		
 	//var_dump($_SESSION['logintype']);
-	if(!isset($_SESSION['JUSTLOGINSHOWPWDEDIT'])&&($minfo['searchcache']&&$minfo['cachechange'])&&$action!='menu'&&!($controller=='c_admin_index'&&($action=='index' || $action=='changerole'))&&$action!='save_self'&&$action!='logout'&&$action!='doqrcode'&&$action!='doaccept'&&$action!='get_sms'&&$action!='get_email'&&$action!='login_tip'&&$action!='get_user_login_fristauth'&&$_SESSION['authtype']=='localauth'){
+	if(!isset($_SESSION['JUSTLOGINSHOWPWDEDIT'])&&($minfo['searchcache']&&$minfo['cachechange'])&&$action!='menu'&&!($controller=='c_admin_index'&&($action=='index' || $action=='changerole'))&&$action!='save_self'&&$action!='logout'&&$action!='doqrcode'&&$action!='doaccept'&&$action!='get_sms'&&$action!='get_email'&&$action!='login_tip'&&$action!='get_user_login_fristauth'&&$action!='getkey'&&$_SESSION['authtype']=='localauth'){
 		//$controller = 'c_admin_member';
 		//$action = 'edit_self';
 		echo '<script>if(confirm("权限已更新，请更新缓存")) window.location="admin.php?controller=admin_index&action=do_devices_cache";</script>';
@@ -264,20 +264,20 @@ if($_SESSION['ADMIN_UID']){
 
 	
 
-	if(!isset($_SESSION['JUSTLOGINSHOWPWDEDIT'])&&((time()-$minfo['lastdateChpwd'])/(24*3600) > ($pwdconfig['pwdexpired']-$pwdconfig['pwdahead'])||$minfo['forceeditpassword'])&&$action!='menu'&&!($controller=='c_admin_index'&&($action=='index' || $action=='changerole'))&&$action!='save_self'&&$action!='logout'&&$action!='doqrcode'&&$action!='doaccept'&&$action!='get_sms'&&$action!='get_email'&&$action!='login_tip'&&$action!='get_user_login_fristauth'&&$_SESSION['authtype']=='localauth'){
+	if(!isset($_SESSION['JUSTLOGINSHOWPWDEDIT'])&&((time()-$minfo['lastdateChpwd'])/(24*3600) > ($pwdconfig['pwdexpired']-$pwdconfig['pwdahead'])||$minfo['forceeditpassword'])&&$action!='menu'&&!($controller=='c_admin_index'&&($action=='index' || $action=='changerole'))&&$action!='save_self'&&$action!='logout'&&$action!='doqrcode'&&$action!='doaccept'&&$action!='get_sms'&&$action!='get_email'&&$action!='login_tip'&&$action!='get_user_login_fristauth'&&$action!='getkey'&&$_SESSION['authtype']=='localauth'){
 			$controller = 'c_admin_member';
 			$action = 'edit_self';
 			$_GET['msg']='changepwd';
 			$_SESSION['JUSTLOGINSHOWPWDEDIT']='on';
 	}
 	
-	if(((time()-$minfo['lastdateChpwd'])/(24*3600) > ($pwdconfig['pwdexpired']/*-$pwdconfig['pwdahead']*/)||$minfo['forceeditpassword'])&&$action!='menu'&&!($controller=='c_admin_index'&&($action=='index' || $action=='changerole'))&&$action!='save_self'&&$action!='logout'&&$action!='doqrcode'&&$action!='doaccept'&&$action!='get_sms'&&$action!='get_email'&&$action!='login_tip'&&$action!='get_user_login_fristauth'&&$_SESSION['authtype']=='localauth'){
+	if(((time()-$minfo['lastdateChpwd'])/(24*3600) > ($pwdconfig['pwdexpired']/*-$pwdconfig['pwdahead']*/)||$minfo['forceeditpassword'])&&$action!='menu'&&!($controller=='c_admin_index'&&($action=='index' || $action=='changerole'))&&$action!='save_self'&&$action!='logout'&&$action!='doqrcode'&&$action!='doaccept'&&$action!='get_sms'&&$action!='get_email'&&$action!='login_tip'&&$action!='get_user_login_fristauth'&&$action!='getkey'&&$_SESSION['authtype']=='localauth'){
 			$controller = 'c_admin_member';
 			$action = 'edit_self';
 			$_GET['msg']='changepwd';
 	}
 
-	if(empty($_SESSION['USER_LOGIN_ACCEPT'])&&$_CONFIG['ACCEPT']&&$_SESSION['ADMIN_LEVEL']==0&&$action!='menu'&&$action!='logout'&&$action!='doqrcode'&&$action!='doaccept'&&$action!='get_sms'&&$action!='get_email'&&$action!='login_tip'&&$action!='get_user_login_fristauth'&&$action!='save_self'){
+	if(empty($_SESSION['USER_LOGIN_ACCEPT'])&&$_CONFIG['ACCEPT']&&$_SESSION['ADMIN_LEVEL']==0&&$action!='menu'&&$action!='logout'&&$action!='doqrcode'&&$action!='doaccept'&&$action!='get_sms'&&$action!='get_email'&&$action!='login_tip'&&$action!='get_user_login_fristauth'&&$action!='save_self'&&$action!='getkey'){
 			$controller = 'c_admin_index';
 			$action = 'accept';
 	}
@@ -286,7 +286,7 @@ if($_SESSION['ADMIN_UID']){
 	$_CONFIG['PWD_REMAIN_DAYS'] = $pwdremain >=0 ? $pwdremain.'天' : '<font color="red">已过期</font>';
 
 	$cologinauth = (($minfo['usbkey']&&$minfo['usbkeystatus']==11) || $minfo['authtype']&&($minfo['radiusauth']||$minfo['ldapauth']||$minfo['adauth']||$minfo['emailauth']||intval($minfo['auth'])==2));
-	if($cologinauth&&empty($_SESSION['USER_MULTI_LOGIN_VALIDATED'])&&$action!='menu'&&$action!='logout'&&$action!='doqrcode'&&$action!='doaccept'&&$action!='get_sms'&&$action!='get_email'&&$action!='login_tip'&&$action!='get_user_login_fristauth'&&$action!='save_self'){
+	if($cologinauth&&empty($_SESSION['USER_MULTI_LOGIN_VALIDATED'])&&$action!='menu'&&$action!='logout'&&$action!='doqrcode'&&$action!='doaccept'&&$action!='get_sms'&&$action!='get_email'&&$action!='login_tip'&&$action!='get_user_login_fristauth'&&$action!='save_self'&&$action!='getkey'){
 			$controller = 'c_admin_index';
 			$action = 'qrcode';
 	}
