@@ -1,3 +1,5 @@
+堡垒机（麒麟堡垒机) 支持单点登录、认证授权、操作审计，支持协议包括telnet/ssh/ftp/sftp/scp/rdp/vnc/x11/http/https/oracle/mysql/sqlserver/db2/pcanywhere/radmin等，支持SQL审计
+堡垒机（麒麟堡垒机) 客户端支持各版本windows、MacOS、安卓、IOS。
 堡垒机（麒麟堡垒机)支持通用堡垒机功能（含云桌面功能）、SSL VPN功能、动态口令功能（手机APP方式不需要联网）、CA认证功能，RDP可支持TLS，系统升级、响应迅速，堡垒机开源版本支持telnet、ssh、rdp、ftp协议，不需要生成许可可以直接下载安装使用。
 
 堡垒机（麒麟堡垒机)官网地址http://www.tosec.com.cn    QQ 5群：516043560,   支持人员QQ:14769579,可以得到官方支持。
